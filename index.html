@@ -323,7 +323,8 @@
   <audio id="perfect" autoplay>
     <source src="perfct.mp3" type="audio/mpeg">
   </audio>
-  
+  <span style="position: fixed; top:2px; right:13px; font-size: 22px;cursor: pointer;" onclick="oynat()">▶️</button>
+
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh"
     crossorigin="anonymous"></script>
@@ -332,11 +333,15 @@
     crossorigin="anonymous"></script>
   <script src="jquery.flipper-responsive.js"></script>
   <script>
-    jQuery(function ($) {
+   jQuery(function ($) {
       $('#myFlipper').flipper('init');
       $("#kinaflip").flipper("init");
-      $("#perfect")[0].play();
+      var st = setTimeout(()=>{oynat();clearTimeout(st)},1333);
     });
+
+    function oynat(){
+      $("#perfect")[0].play();
+    }
   </script>
 </body>
 
