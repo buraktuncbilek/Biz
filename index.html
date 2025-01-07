@@ -9,6 +9,25 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#181818">
+  <link rel="apple-touch-icon" href="icon-192x192.png">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ayşe ♥ Burak">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="/biz.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+<link href="/biz.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+<link href="/biz.jpg" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+<link href="/biz.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+<link href="/biz.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+<link href="/biz.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+<link href="/biz.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+<link rel="apple-touch-icon" sizes="128x128" href="icon-192x192.png">
+<link rel="apple-touch-icon-precomposed" sizes="128x128" href="icon-192x192.png">
+<link rel="icon" sizes="192x192" href="icon-192x192.png">
+<link rel="icon" sizes="128x128" href="icon-192x192.png">
+
   <style>
     body {
       background: rgb(24, 24, 24);
@@ -354,6 +373,19 @@
 
       function oynat() {
         $("#perfect")[0].play();
+      }
+
+      // Service worker kaydı
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('ServiceWorker başarıyla kaydedildi:', registration.scope);
+            })
+            .catch(err => {
+              console.log('ServiceWorker kaydı başarısız:', err);
+            });
+        });
       }
     </script>
 </body>
