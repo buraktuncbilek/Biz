@@ -378,7 +378,7 @@
       // Service worker kaydı
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
+          navigator.serviceWorker.register('/Biz/sw.js')
             .then(registration => {
               console.log('ServiceWorker başarıyla kaydedildi:', registration.scope);
             })
