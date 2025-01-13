@@ -13,20 +13,27 @@
   <meta name="theme-color" content="#181818">
   <link rel="apple-touch-icon" href="icon-192x192.png">
 
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Ayşe ♥ Burak">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link href="/biz.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-<link href="/biz.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-<link href="/biz.jpg" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
-<link href="/biz.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
-<link href="/biz.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-<link href="/biz.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-<link href="/biz.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-<link rel="apple-touch-icon" sizes="128x128" href="icon-192x192.png">
-<link rel="apple-touch-icon-precomposed" sizes="128x128" href="icon-192x192.png">
-<link rel="icon" sizes="192x192" href="icon-192x192.png">
-<link rel="icon" sizes="128x128" href="icon-192x192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Ayşe ♥ Burak">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link href="/biz.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="/biz.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="/biz.jpg" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+    rel="apple-touch-startup-image" />
+  <link href="/biz.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+    rel="apple-touch-startup-image" />
+  <link href="/biz.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="/biz.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="/biz.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link rel="apple-touch-icon" sizes="128x128" href="icon-192x192.png">
+  <link rel="apple-touch-icon-precomposed" sizes="128x128" href="icon-192x192.png">
+  <link rel="icon" sizes="192x192" href="icon-192x192.png">
+  <link rel="icon" sizes="128x128" href="icon-192x192.png">
 
   <style>
     body {
@@ -308,6 +315,8 @@
       color: #333;
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 
 <body>
@@ -350,44 +359,189 @@
 
   </div>
 
-  <audio id="perfect" autoplay>
+  <audio id="perfect">
     <source src="perfct.mp3" type="audio/mpeg">
   </audio>
 
-  <span style="position: fixed; top:2px; right:13px; font-size: 22px;cursor: pointer;" onclick="oynat()">▶️</button>
+  <span style="position: fixed; top:2px; right:13px; font-size: 22px;cursor: pointer;" onclick="oynat()">▶️</span>
+  <span id="installPWA"
+    style="position: fixed; top:2px; right:50px; font-size: 22px;cursor: pointer; display: none;">📱</span>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh"
-      crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"></script>
-    <script src="jquery.flipper-responsive.js"></script>
-    <script>
-      jQuery(function ($) {
-        $('#myFlipper').flipper('init');
-        $("#kinaflip").flipper("init");
-        $("#dugunflip").flipper("init");
-        var st = setTimeout(() => { oynat(); clearTimeout(st) }, 1333);
-      });
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="jquery.flipper-responsive.js"></script>
+  <script>
+    // iOS cihaz kontrolü
+    function isIOS() {
+      return [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+      ].includes(navigator.platform)
+        // iPad iOS 13+ detection
+        || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+    }
 
-      function oynat() {
-        $("#perfect")[0].play();
+    jQuery(function ($) {
+      let nikah = new Date("2025-04-03 15:00:00");
+      let dugun = new Date("2025-04-19 20:00:00");
+      let kina = new Date("2025-04-17 19:00:00");
+
+      // Tarihleri kontrol eden fonksiyon
+      function tarihKontrol() {
+        const simdi = new Date();
+
+        if (simdi >= nikah && simdi < kina) {
+          Swal.fire({
+            title: 'Nikahımız Kutlu Olsun! 💍',
+            text: 'Kına gecemize az kaldı!',
+            icon: 'success',
+            confirmButtonText: '❤️'
+          }).then(() => {
+            confetti({
+              particleCount: 100,
+              spread: 70,
+              origin: { y: 0.6 }
+            });
+          });
+        } else if (simdi >= kina && simdi < dugun) {
+          Swal.fire({
+            title: 'Kınamız Kutlu Olsun! 💃',
+            text: 'Düğünümüze az kaldı!',
+            icon: 'success',
+            confirmButtonText: '❤️'
+          }).then(() => {
+            confetti({
+              particleCount: 100,
+              spread: 70,
+              origin: { y: 0.6 }
+            });
+          });
+        } else if (simdi >= dugun) {
+          Swal.fire({
+            title: 'Düğünümüz Kutlu Olsun! 👰🤵',
+            text: 'Mutluluğumuz daim olsun!',
+            icon: 'success',
+            confirmButtonText: '❤️'
+          }).then(() => {
+            confetti({
+              particleCount: 100,
+              spread: 70,
+              origin: { y: 0.6 }
+            });
+
+            setTimeout(() => {
+              confetti({
+                particleCount: 30,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0, y: 0.6 },
+                colors: ['#ff0000', '#ffa500', '#ffff00', '#008000', '#0000ff']
+              });
+
+              confetti({
+                particleCount: 30,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1, y: 0.6 },
+                colors: ['#ff0000', '#ffa500', '#ffff00', '#008000', '#0000ff']
+              });
+            }, 500);
+
+          });
+        }
       }
 
-      // Service worker kaydı
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/Biz/sw.js')
-            .then(registration => {
-              console.log('ServiceWorker başarıyla kaydedildi:', registration.scope);
-            })
-            .catch(err => {
-              console.log('ServiceWorker kaydı başarısız:', err);
-            });
+      // Sayfa yüklendiğinde kontrol et
+      tarihKontrol();
+
+      // Her 1 saatte bir kontrol et (opsiyonel)
+      setInterval(tarihKontrol, 3600000);
+
+      $('#myFlipper').flipper('init');
+      $("#kinaflip").flipper("init");
+      $("#dugunflip").flipper("init");
+
+      // Sadece iOS cihazlarda touch event dinle
+      if (isIOS()) {
+        document.addEventListener('touchstart', function () {
+          var audio = document.getElementById('perfect');
+          audio.play().catch(function (error) {
+            console.log("iOS ses çalma hatası:", error);
+          });
+        }, { once: true });
+      } else {
+        // iOS değilse otomatik çal
+        var audio = document.getElementById('perfect');
+        audio.play().catch(function (error) {
+          console.log("Ses çalma hatası:", error);
         });
       }
-    </script>
+
+
+    });
+
+    function oynat() {
+      var audio = document.getElementById('perfect');
+      audio.play().catch(function (error) {
+        console.log("Ses çalma hatası:", error);
+      });
+    }
+
+    // PWA Yükleme İşlemleri
+    let deferredPrompt;
+    const installButton = document.getElementById('installPWA');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Chrome 76+ sürümlerinde yükleme promptunu engelle
+      e.preventDefault();
+      // Daha sonra göstermek için olayı sakla
+      deferredPrompt = e;
+      // Yükleme butonunu göster
+      installButton.style.display = 'block';
+
+      installButton.addEventListener('click', async () => {
+        // Butonu gizle
+        installButton.style.display = 'none';
+        // Yükleme promptunu göster
+        deferredPrompt.prompt();
+        // Kullanıcının yanıtını bekle
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`Kullanıcı yanıtı: ${outcome}`);
+        // Prompt'u temizle
+        deferredPrompt = null;
+      });
+    });
+
+    // PWA zaten yüklüyse
+    window.addEventListener('appinstalled', () => {
+      // Yükleme butonunu gizle
+      installButton.style.display = 'none';
+      // Prompt'u temizle
+      deferredPrompt = null;
+      console.log('PWA başarıyla yüklendi');
+    });
+
+    // Service worker kaydı
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/Biz/sw.js')
+          .then(registration => {
+            console.log('ServiceWorker başarıyla kaydedildi:', registration.scope);
+          })
+          .catch(err => {
+            console.log('ServiceWorker kaydı başarısız:', err);
+          });
+      });
+    }
+  </script>
 </body>
 
 </html>
