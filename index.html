@@ -389,15 +389,14 @@
         || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
     }
 
-    jQuery(function ($) {
-      let nikah = new Date("2025-04-03 15:00:00");
-      let dugun = new Date("2025-04-19 20:00:00");
-      let kina = new Date("2025-04-17 19:00:00");
-
       // Tarihleri kontrol eden fonksiyon
       function tarihKontrol() {
         const simdi = new Date();
+        let nikah = new Date("2025-04-03 15:00:00");
+      let dugun = new Date("2025-04-19 20:00:00");
+      let kina = new Date("2025-04-17 19:00:00");
 
+      
         if (simdi >= nikah && simdi < kina) {
           Swal.fire({
             title: 'Nikahımız Kutlu Olsun! 💍',
@@ -459,6 +458,8 @@
         }
       }
 
+    jQuery(function ($) {
+     
       // Sayfa yüklendiğinde kontrol et
       tarihKontrol();
 
@@ -541,6 +542,35 @@
           });
       });
     }
+
+    function sayfaYuklendi() {
+      // iOS kontrol
+      if (!isIOS) {
+        try {
+          const perfect = document.getElementById('perfect');
+          if (perfect) {
+            const sesPromise = perfect.play();
+            
+            if (sesPromise !== undefined) {
+              sesPromise
+                .then(() => {
+                  console.log('Müzik başladı');
+                  // Ses seviyesini ayarlayalım
+                  perfect.volume = 0.4; // 0.0 ile 1.0 arası
+                })
+                .catch(error => {
+                  console.log('Müzik çalınamadı:', error);
+                });
+            }
+          }
+        } catch (error) {
+          console.log('Müzik çalma hatası:', error);
+        }
+      }
+    }
+
+    // Sayfa yüklendiğinde çalıştır
+    window.addEventListener('load', sayfaYuklendi);
   </script>
 </body>
 
