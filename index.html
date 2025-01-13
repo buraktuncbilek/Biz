@@ -366,6 +366,8 @@
   <span style="position: fixed; top:2px; right:13px; font-size: 22px;cursor: pointer;" onclick="oynat()">▶️</span>
   <span id="installPWA"
     style="position: fixed; top:2px; right:50px; font-size: 22px;cursor: pointer; display: block;">📱</span>
+  <span id="yenile"
+    style="position: fixed; bottom:2px; right:50px; font-size: 22px;cursor: pointer; display: block;color: rgb(59,59,59);">Yenile</span>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh"
@@ -389,77 +391,92 @@
         || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
     }
 
-      // Tarihleri kontrol eden fonksiyon
-      function tarihKontrol() {
-        const simdi = new Date();
-        let nikah = new Date("2025-04-03 15:00:00");
+    // Tarihleri kontrol eden fonksiyon
+    function tarihKontrol() {
+      const simdi = new Date();
+      let nikah = new Date("2025-04-03 15:00:00");
       let dugun = new Date("2025-04-19 20:00:00");
       let kina = new Date("2025-04-17 19:00:00");
 
-      
-        if (simdi >= nikah && simdi < kina) {
-          Swal.fire({
-            title: 'Nikahımız Kutlu Olsun! 💍',
-            text: 'Kına gecemize az kaldı!',
-            icon: 'success',
-            confirmButtonText: '❤️'
-          }).then(() => {
-            confetti({
-              particleCount: 100,
-              spread: 70,
-              origin: { y: 0.6 }
-            });
+
+      if (simdi >= nikah && simdi < kina) {
+        Swal.fire({
+          title: 'Nikahımız Kutlu Olsun! 💍',
+          text: 'Kına gecemize az kaldı!',
+          icon: 'success',
+          confirmButtonText: '❤️'
+        }).then(() => {
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
           });
-        } else if (simdi >= kina && simdi < dugun) {
-          Swal.fire({
-            title: 'Kınamız Kutlu Olsun! 💃',
-            text: 'Düğünümüze az kaldı!',
-            icon: 'success',
-            confirmButtonText: '❤️'
-          }).then(() => {
-            confetti({
-              particleCount: 100,
-              spread: 70,
-              origin: { y: 0.6 }
-            });
+        });
+      } else if (simdi >= kina && simdi < dugun) {
+        Swal.fire({
+          title: 'Kınamız Kutlu Olsun! 💃',
+          text: 'Düğünümüze az kaldı!',
+          icon: 'success',
+          confirmButtonText: '❤️'
+        }).then(() => {
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
           });
-        } else if (simdi >= dugun) {
-          Swal.fire({
-            title: 'Düğünümüz Kutlu Olsun! 👰🤵',
-            text: 'Mutluluğumuz daim olsun!',
-            icon: 'success',
-            confirmButtonText: '❤️'
-          }).then(() => {
+        });
+      } else if (simdi >= dugun) {
+        Swal.fire({
+          title: 'Düğünümüz Kutlu Olsun! 👰🤵',
+          text: 'Mutluluğumuz daim olsun!',
+          icon: 'success',
+          confirmButtonText: '❤️'
+        }).then(() => {
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+          });
+
+          setTimeout(() => {
             confetti({
-              particleCount: 100,
-              spread: 70,
-              origin: { y: 0.6 }
+              particleCount: 30,
+              angle: 60,
+              spread: 55,
+              origin: { x: 0, y: 0.6 },
+              colors: ['#ff0000', '#ffa500', '#ffff00', '#008000', '#0000ff']
             });
 
-            setTimeout(() => {
-              confetti({
-                particleCount: 30,
-                angle: 60,
-                spread: 55,
-                origin: { x: 0, y: 0.6 },
-                colors: ['#ff0000', '#ffa500', '#ffff00', '#008000', '#0000ff']
-              });
+            confetti({
+              particleCount: 30,
+              angle: 120,
+              spread: 55,
+              origin: { x: 1, y: 0.6 },
+              colors: ['#ff0000', '#ffa500', '#ffff00', '#008000', '#0000ff']
+            });
+          }, 500);
 
-              confetti({
-                particleCount: 30,
-                angle: 120,
-                spread: 55,
-                origin: { x: 1, y: 0.6 },
-                colors: ['#ff0000', '#ffa500', '#ffff00', '#008000', '#0000ff']
-              });
-            }, 500);
-
-          });
-        }
+        });
       }
+    }
+
+    function isMasaustu() {
+      // Mobil cihazları kontrol eden regex
+      const mobilRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+
+      // Ekran genişliği kontrolü (1024px ve üzeri genellikle masaüstü olarak kabul edilir)
+      const genisEkran = window.innerWidth >= 1024;
+
+      // Touch özelliği kontrolü
+      const dokunmatikYok = !('ontouchstart' in window);
+
+      // Eğer mobil değilse VE (geniş ekran VEYA dokunmatik özellik yoksa) masaüstüdür
+      return !mobilRegex.test(navigator.userAgent) && (genisEkran || dokunmatikYok);
+    }
+
 
     jQuery(function ($) {
-     
+
       // Sayfa yüklendiğinde kontrol et
       tarihKontrol();
 
@@ -479,13 +496,28 @@
           });
         }, { once: true });
       } else {
-        // iOS değilse otomatik çal
+        //androidin suçu ne?
+        if (!isMasaustu()) {
+          document.addEventListener('touchstart', function () {
+            var audio = document.getElementById('perfect');
+            audio.play().catch(function (error) {
+              console.log("Ses çalma hatası:", error);
+            });
+
+          });
+        }
+        
+        // Mobil değilse otomatik çal
         var audio = document.getElementById('perfect');
         audio.play().catch(function (error) {
           console.log("Ses çalma hatası:", error);
         });
-      }
 
+      }
+      document.getElementById('yenile').addEventListener('click', function () {
+        //location.reload(true);
+        window.location = window.location.href + '?eraseCache=true';
+      });
 
     });
 
@@ -550,7 +582,7 @@
           const perfect = document.getElementById('perfect');
           if (perfect) {
             const sesPromise = perfect.play();
-            
+
             if (sesPromise !== undefined) {
               sesPromise
                 .then(() => {
